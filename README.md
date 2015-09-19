@@ -1,4 +1,7 @@
-# RobotArm
+# RobotArm [![build status](https://travis-ci.org/cheton/robotarm.svg?branch=master)](https://travis-ci.org/cheton/robotarm) [![Coverage Status](https://coveralls.io/repos/cheton/browserify-css/badge.svg)](https://coveralls.io/r/cheton/robotarm)
+
+[![NPM](https://nodei.co/npm/robotarm.png?downloads=true&stars=true)](https://nodei.co/npm/robotarm/)
+
 JavaScript Powered Robot Arm with Johnny-Five
 
 ```js

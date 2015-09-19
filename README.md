@@ -38,11 +38,13 @@ board.on('ready', function() {
         .then(function(next) {
             // Move claw axis to 10 degrees in 2000ms.
             this.axis.claw.to(10, 2000);
+            
             setTimeout(next, 2000);
         })
         .then(function(next) {
             // Move claw axis to 170 degrees in 2000ms.
             this.axis.claw.to(170, 2000);
+            
             setTimeout(next, 2000);
         })
         .then(function(next) {

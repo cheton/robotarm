@@ -1,7 +1,7 @@
 {
   "name": "robotarm",
   "version": "0.1.0",
-  "description": "JavaScript Controlled Robot Arm",
+  "description": "JavaScript Powered Robot Arm with Johnny-Five",
   "homepage": "https://github.com/cheton/robotarm",
   "author": "Cheton Wu <cheton@gmail.com>",
   "main": "./index.js",

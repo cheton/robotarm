@@ -1,8 +1,8 @@
 var CommandQueue = require('./command-queue');
 
 /**
- * @param {object} options.board See https://github.com/rwaldron/johnny-five/wiki/Board#parameters
- * @param {object} options.axis
+ * @param {object} options The options object.
+ * @param {object|array} options.axis A list of servos to control robot arm.
  */
 var RobotArm = function(options) {
     this._queue = new CommandQueue();

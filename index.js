@@ -1,6 +1,8 @@
 var CommandQueue = require('./command-queue');
 
 /**
+ * Creates a new robot arm
+ * @constructor
  * @param {object} options The options object.
  * @param {object|array} options.axis A list of servos to control robot arm.
  */

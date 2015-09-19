@@ -4,9 +4,9 @@ JavaScript Powered Robot Arm with Johnny-Five
 ```js
 var five = require('johnny-five');
 var board = new five.Board();
-var RobotArm = require('robotarm');
 
 board.on('ready', function() {
+    var RobotArm = require('robotarm');
     var robotarm = new RobotArm({
         axis: {
             base: new five.Servo(3), // attached to pin 3

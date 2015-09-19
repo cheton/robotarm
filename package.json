@@ -1,0 +1,45 @@
+{
+  "name": "robotarm",
+  "version": "0.1.0",
+  "description": "JavaScript Controlled Robot Arm",
+  "homepage": "https://github.com/cheton/robotarm",
+  "author": "Cheton Wu <cheton@gmail.com>",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cheton/robotarm.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/cheton/robotarm/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">=0.10.x"
+  },
+  "scripts": {
+    "test": "npm run gulp",
+    "example": "node examples/robotarm",
+    "gulp": "gulp"
+  },
+  "keywords": [
+    "arduino",
+    "johnny-five",
+    "robotarm"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "3.9.x",
+    "gulp-eslint": "^1.0.0",
+    "gulp-jscs": "^1.5.1",
+    "gulp-jscs-stylish": "^1.1.0",
+    "gulp-jshint": "1.9.x",
+    "gulp-util": "^3.0.3",
+    "johnny-five": "^0.8.91",
+    "lodash": "^3.10.1",
+    "require-dir": "^0.1.0",
+    "run-sequence": "^1.0.2",
+    "yargs": "^2.3.0"
+  }
+}

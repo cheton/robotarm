@@ -16,22 +16,22 @@ var createRobotArm = function() {
                 center: true,
                 range: [10, 170]
             }),
-            axis1: new five.Servo({
+            bottom: new five.Servo({
                 pin: 5,
                 center: true,
                 range: [10, 170]
             }),
-            axis2: new five.Servo({
+            middle: new five.Servo({
                 pin: 6,
                 center: true,
                 range: [10, 170]
             }),
-            axis3: new five.Servo({
+            top: new five.Servo({
                 pin: 9,
                 center: true,
                 range: [10, 170]
             }),
-            turn: new five.Servo({
+            wrist: new five.Servo({
                 pin: 10,
                 center: true,
                 range: [10, 170]

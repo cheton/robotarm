@@ -28,8 +28,8 @@ board.on('ready', function() {
     
     robotarm
         .then(function(next) {
-            // Move all axes to the center position.
-            this.axis.base.center(1000); // in 1000ms
+            // Move all axes to the center position in 1000ms.
+            this.axis.base.center(1000);
             this.axis.bottom.center(1000);
             this.axis.middle.center(1000);
             this.axis.top.center(1000);

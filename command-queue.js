@@ -1,4 +1,4 @@
-var MotionQueue = function(options) {
+var CommandQueue = function(options) {
 
     var Wrapper = function() {
         this._queue = [];
@@ -15,7 +15,7 @@ var MotionQueue = function(options) {
         return this;
     };
 
-    Wrapper.prototype.start = function(options) {
+    Wrapper.prototype.play = function(options) {
         options = options || {};
         this._stopped = false;
         this._loop = !!options.loop;
@@ -35,9 +35,9 @@ var MotionQueue = function(options) {
         return this;
     };
 
-    Wrapper.prototype.restart = function(options) {
+    Wrapper.prototype.replay = function(options) {
         this.stop();
-        this.start(options);
+        this.play(options);
         return this;
     };
 
@@ -47,7 +47,7 @@ var MotionQueue = function(options) {
         return this;
     };
 
-    Wrapper.prototype.add = function(data) {
+    Wrapper.prototype.push = function(data) {
         this._queue = this._queue.concat(data);
         return this;
     };
@@ -75,15 +75,11 @@ var MotionQueue = function(options) {
         return this;
     };
 
-    Wrapper.prototype.status = function() {
-        return {
-            stopped: this._stopped,
-            total: this._queue.length,
-            executed: this._executed
-        };
+    Wrapper.prototype.isStopped = function() {
+        return this._stopped;
     };
 
-    Wrapper.prototype.executed = function() {
+    Wrapper.prototype.isExecuted = function() {
         return this._executed;
     };
 
@@ -94,4 +90,4 @@ var MotionQueue = function(options) {
     return new Wrapper();
 };
 
-module.exports = MotionQueue;
+module.exports = CommandQueue;

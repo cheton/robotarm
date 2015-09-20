@@ -4,7 +4,7 @@
 
 JavaScript Powered Robot Arm with Johnny-Five
 
-[Demo Video](https://www.youtube.com/watch?v=aYJ7rFvTvoU&feature=youtu.be)
+[Demo Video](https://www.youtube.com/watch?v=aYJ7rFvTvoU)
 
 ## Examples
 

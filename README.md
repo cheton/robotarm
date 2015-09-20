@@ -8,6 +8,8 @@ JavaScript Powered Robot Arm with Johnny-Five
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/aYJ7rFvTvoU/0.jpg)](https://www.youtube.com/watch?v=aYJ7rFvTvoU "JavaScript Powered Robot Arm with Johnny-Five")
 
+You can check out the [source code](https://github.com/cheton/robotarm/blob/master/examples/robotarm.js) for the video above.
+
 ## Examples
 
 ```js

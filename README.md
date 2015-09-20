@@ -29,14 +29,14 @@ board.on('ready', function() {
     robotarm
         .then(function(next) {
             // Move all axes to the center position.
-            this.axis.base.center();
-            this.axis.bottom.center();
-            this.axis.middle.center();
-            this.axis.top.center();
-            this.axis.wrist.center();
-            this.axis.claw.center();
+            this.axis.base.center(1000); // in 1000ms
+            this.axis.bottom.center(1000);
+            this.axis.middle.center(1000);
+            this.axis.top.center(1000);
+            this.axis.wrist.center(1000);
+            this.axis.claw.center(1000);
             
-            setTimeout(next, 2000);
+            setTimeout(next, 1500);
         })
         .then(function(next) {
             // Move claw axis to 10 degrees in 2000ms.
@@ -58,5 +58,9 @@ board.on('ready', function() {
     robotarm.play({
         loop: true // Set loop to true to execute continuously.
     });
+    
+    setTimeout(function() {
+        robotarm.stop(); // Stop robotarm after 20 seconds
+    }, 20 * 1000);
 });
 ```

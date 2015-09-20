@@ -20,12 +20,12 @@ var RobotArm = function(options) {
 };
 
 RobotArm.prototype.then = function(fn) {
-    this._queue.add(fn);
+    this._queue.push(fn);
     return this;
 };
 
-RobotArm.prototype.run = RobotArm.prototype.start = function(options) {
-    this._queue.start(options);
+RobotArm.prototype.play = function(options) {
+    this._queue.play(options);
     return this;
 };
 
@@ -34,8 +34,8 @@ RobotArm.prototype.stop = function() {
     return this;
 };
 
-RobotArm.prototype.restart = function(options) {
-    this._queue.restart(options);
+RobotArm.prototype.replay = function(options) {
+    this._queue.replay(options);
     return this;
 };
 

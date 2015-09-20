@@ -55,7 +55,7 @@ board.on('ready', function() {
             next();
         });
     
-    robotarm.run({
+    robotarm.play({
         loop: true // Set loop to true to execute continuously.
     });
 });

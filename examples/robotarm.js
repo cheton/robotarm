@@ -34,12 +34,12 @@ var createRobotArm = function() {
             wrist: new five.Servo({
                 pin: 10,
                 center: true,
-                range: [10, 170]
+                range: [0, 180]
             }),
             claw: new five.Servo({
                 pin: 11,
                 center: true,
-                range: [125, 175]
+                range: [130, 175]
             })
         }
     });
@@ -84,13 +84,13 @@ board.on('ready', function() {
         })
         .then(function(next) {
             this.axis.base.to(10, 2000); // Move axis.base to 10 degrees in 2000ms.
-            this.axis.claw.to(170, 2000); // Move axis.claw to 170 degrees in 2000ms.
+            this.axis.claw.to(175, 2000); // Move axis.claw to 175 degrees in 2000ms.
 
             setTimeout(next, 2000);
         })
         .then(function(next) {
             this.axis.base.to(150, 2000); // Move axis.base to 150 degrees in 2000ms.
-            this.axis.claw.to(125, 2000); // Move axis.claw to 125 degrees in 2000ms.
+            this.axis.claw.to(130, 2000); // Move axis.claw to 130 degrees in 2000ms.
 
             setTimeout(next, 2000);
         })
@@ -100,7 +100,11 @@ board.on('ready', function() {
             setTimeout(next, 2000);
         });
 
-    robotarm.run({
-        loop: false // You can set loop to true to execute continuously.
+    robotarm.play({
+        loop: true // You can set loop to true to execute continuously.
     });
+
+    setTimeout(function() {
+        robotarm.stop(); // Stop robotarm after 20 seconds.
+    }, 20 * 1000);
 });

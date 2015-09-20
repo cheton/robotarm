@@ -60,7 +60,7 @@ board.on('ready', function() {
     });
     
     setTimeout(function() {
-        robotarm.stop(); // Stop robotarm after 20 seconds
+        robotarm.stop(); // Stop robotarm after 20 seconds.
     }, 20 * 1000);
 });
 ```

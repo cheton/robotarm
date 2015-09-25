@@ -11,22 +11,22 @@ var board = new five.Board({
 var createRobotArm = function() {
     return new RobotArm({
         axis: {
-            base: new five.Servo({
+            pivot: new five.Servo({
                 pin: 3,
                 center: true,
                 range: [10, 170]
             }),
-            bottom: new five.Servo({
+            stand: new five.Servo({
                 pin: 5,
                 center: true,
                 range: [10, 170]
             }),
-            middle: new five.Servo({
+            shoulder: new five.Servo({
                 pin: 6,
                 center: true,
                 range: [10, 170]
             }),
-            top: new five.Servo({
+            elbow: new five.Servo({
                 pin: 9,
                 center: true,
                 range: [10, 170]
@@ -83,13 +83,13 @@ board.on('ready', function() {
             setTimeout(next, 2000);
         })
         .then(function(next) {
-            this.axis.base.to(10, 2000); // Move axis.base to 10 degrees in 2000ms.
+            this.axis.pivot.to(10, 2000); // Move axis.pivot to 10 degrees in 2000ms.
             this.axis.claw.to(175, 2000); // Move axis.claw to 175 degrees in 2000ms.
 
             setTimeout(next, 2000);
         })
         .then(function(next) {
-            this.axis.base.to(150, 2000); // Move axis.base to 150 degrees in 2000ms.
+            this.axis.pivot.to(150, 2000); // Move axis.pivot to 150 degrees in 2000ms.
             this.axis.claw.to(130, 2000); // Move axis.claw to 130 degrees in 2000ms.
 
             setTimeout(next, 2000);

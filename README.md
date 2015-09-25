@@ -20,10 +20,10 @@ board.on('ready', function() {
     var RobotArm = require('robotarm');
     var robotarm = new RobotArm({
         axis: {
-            base: new five.Servo(3), // attached to pin 3
-            bottom: new five.Servo(5),
-            middle: new five.Servo(6),
-            top: new five.Servo(9),
+            pivot: new five.Servo(3), // attached to pin 3
+            stand: new five.Servo(5),
+            shoulder: new five.Servo(6),
+            elbow: new five.Servo(9),
             wrist: new five.Servo(10),
             claw: new five.Servo(11)
         }
@@ -37,10 +37,10 @@ board.on('ready', function() {
     robotarm
         .then(function(next) {
             // Move all axes to the center position in 1000ms.
-            this.axis.base.center(1000);
-            this.axis.bottom.center(1000);
-            this.axis.middle.center(1000);
-            this.axis.top.center(1000);
+            this.axis.pivot.center(1000);
+            this.axis.stand.center(1000);
+            this.axis.shoulder.center(1000);
+            this.axis.elbow.center(1000);
             this.axis.wrist.center(1000);
             this.axis.claw.center(1000);
             

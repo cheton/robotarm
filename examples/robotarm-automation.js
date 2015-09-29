@@ -39,7 +39,7 @@ var createRobotArm = function() {
             claw: new five.Servo({
                 pin: 11,
                 center: true,
-                range: [130, 175]
+                range: [135, 175]
             })
         }
     });
@@ -75,36 +75,58 @@ board.on('ready', function() {
         .then(function(next) {
             to(30, 2000); // Move all axes to 30 degrees in 2000ms.
 
-            setTimeout(next, 2000);
+            setTimeout(next, 2500);
         })
         .then(function(next) {
             to(150, 2000); // Move all axes to 150 degrees in 2000ms.
 
-            setTimeout(next, 2000);
+            setTimeout(next, 2500);
         })
         .then(function(next) {
             this.axis.pivot.to(10, 2000); // Move axis.pivot to 10 degrees in 2000ms.
             this.axis.claw.to(175, 2000); // Move axis.claw to 175 degrees in 2000ms.
 
-            setTimeout(next, 2000);
+            setTimeout(next, 2500);
         })
         .then(function(next) {
             this.axis.pivot.to(150, 2000); // Move axis.pivot to 150 degrees in 2000ms.
             this.axis.claw.to(130, 2000); // Move axis.claw to 130 degrees in 2000ms.
 
-            setTimeout(next, 2000);
+            setTimeout(next, 2500);
         })
         .then(function(next) {
             center(1000); // Move all axes to the center position.
 
-            setTimeout(next, 2000);
+            setTimeout(next, 2500);
         });
 
-    robotarm.play({
-        loop: true // You can set loop to true to execute continuously.
+    _.each(['pivot', 'stand', 'shoulder', 'elbow', 'wrist'], function(axis, index) {
+        var pin = index;
+
+        this.analogRead(pin, _.throttle(function(value) {
+            if (value < 250) {
+                robotarm.axis[axis].step(-2); // -2 degree per step
+                console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
+            }
+            if (value > 750) {
+                robotarm.axis[axis].step(2); // 2 degree per step
+                console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
+            }
+        }, 50)); // Only invoke func at most once per every 25ms.
+    }.bind(this));
+
+    this.analogRead(5, function(value) {
+        value = five.Fn.scale(value, 0, 1023, 135, 175);
+        robotarm.axis.claw.to(value);
     });
 
+    //robotarm.play({
+    //    loop: true // You can set loop to true to execute continuously.
+    //});
+
+    /*
     setTimeout(function() {
         robotarm.stop(); // Stop robotarm after 20 seconds.
     }, 20 * 1000);
+    */
 });

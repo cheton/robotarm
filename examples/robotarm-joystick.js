@@ -86,16 +86,16 @@ board.on('ready', function() {
         _.each(axes, function(axis, index) {
             var pin = pins[index];
 
-            that.analogRead(pin, _.throttle(function(value) {
+            that.analogRead(pin, function(value) {
                 if (value < 250) {
-                    robotarm.axis[axis].step(-2); // -2 degree per step
+                    robotarm.axis[axis].step(-1, 5); // -1 degree per step in 5ms
                     console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
                 }
                 if (value > 750) {
-                    robotarm.axis[axis].step(2); // 2 degree per step
+                    robotarm.axis[axis].step(1, 5); // 1 degree per step in 5ms
                     console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
                 }
-            }, 50)); // Only invoke func at most once per every 25ms.
+            });
         });
     })();
 
@@ -114,6 +114,6 @@ board.on('ready', function() {
                 robotarm.axis[axis].to(value);
                 console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
             }
-        }, 20));
+        }, 20)); // Only invoke func at most once per every 20ms.
     })();
 });

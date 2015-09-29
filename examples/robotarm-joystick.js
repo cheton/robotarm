@@ -103,7 +103,6 @@ board.on('ready', function() {
         // A5=claw
         var axis = 'claw';
         var pin = 5;
-        var prevValue = -1;
 
         that.analogRead(5, _.throttle(function(value) {
             var min = robotarm.axis[axis].range[0];
@@ -111,10 +110,9 @@ board.on('ready', function() {
 
             value = five.Fn.scale(value, 0, 1023, min, max);
 
-            if (prevValue != value) {
+            if (robotarm.axis[axis].value != value) {
                 robotarm.axis[axis].to(value);
                 console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
-                prevValue = value;
             }
         }, 20));
     })();

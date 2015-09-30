@@ -71,6 +71,21 @@ board.on('ready', function() {
         to: to
     });
 
+    { // Toggle play/stop
+        var button = new five.Button({
+            pin: 2,
+            isPullup: true
+        });
+        button.on('down', function(value) {
+            if (robotarm.isRunning()) {
+                robotarm.stop();
+                center(1000); // Go back to center in 1000ms
+            } else {
+                robotarm.play();
+            }
+        });
+    }
+
     robotarm
         .then(function(next) {
             to(30, 2000); // Move all axes to 30 degrees in 2000ms.

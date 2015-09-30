@@ -83,6 +83,16 @@ board.on('ready', function() {
         to: to
     });
 
+    // Button: Go to center
+    var button = new five.Button({
+        pin: 2,
+        isPullup: true
+    });
+    button.on('down', function(value) {
+        center(1000);
+    });
+
+    // Servo: pivot, stand, shoulder, elbow, wrist
     (function() {
         // A0=pivot, A1=stand, A2=shoulder, A3=elbow, A4=wrist
         var axes = _(robotarm.axis)
@@ -107,6 +117,7 @@ board.on('ready', function() {
         });
     })();
 
+    // Servo: claw
     (function() {
         // A5=claw
         var axis = 'claw';

@@ -86,74 +86,33 @@ board.on('ready', function() {
         });
     }
 
-    var delay = 1500; // 1500ms
-    var timeout = delay + 500;
-
     robotarm
-        // turn right
         .then(function(next) {
-            var delay = 2000;
-            this.axis.pivot.to(50.00, delay);
-            this.axis.stand.to(151.50, delay);
-            this.axis.shoulder.to(58.20, delay);
-            this.axis.elbow.to(94.80, delay);
-            this.axis.wrist.to(93.02, delay);
-            this.axis.claw.min(delay);
-            setTimeout(next, timeout);
+            to(30, 2000); // Move all axes to 30 degrees in 2000ms.
+
+            setTimeout(next, 2500);
         })
         .then(function(next) {
-            this.axis.claw.max(delay);
-            setTimeout(next, timeout);
+            to(150, 2000); // Move all axes to 150 degrees in 2000ms.
+
+            setTimeout(next, 2500);
         })
         .then(function(next) {
-            // center all axes except the claw
-            this.axis.pivot.center(delay);
-            this.axis.stand.center(delay);
-            this.axis.shoulder.center(delay);
-            this.axis.elbow.center(delay);
-            this.axis.wrist.center(delay);
-            setTimeout(next, timeout);
-        })
-        // turn left
-        .then(function(next) {
-            var delay = 2000;
-            this.axis.pivot.to(122.00, delay);
-            this.axis.stand.to(151.40, delay);
-            this.axis.shoulder.to(58.00, delay);
-            this.axis.elbow.to(96.00, delay);
-            this.axis.wrist.to(90.00, delay);
-            this.axis.claw.max(delay);
-            setTimeout(next, timeout);
+            this.axis.pivot.to(10, 2000); // Move axis.pivot to 10 degrees in 2000ms.
+            this.axis.claw.to(175, 2000); // Move axis.claw to 175 degrees in 2000ms.
+
+            setTimeout(next, 2500);
         })
         .then(function(next) {
-            this.axis.claw.min(delay);
-            setTimeout(next, timeout);
+            this.axis.pivot.to(150, 2000); // Move axis.pivot to 150 degrees in 2000ms.
+            this.axis.claw.to(130, 2000); // Move axis.claw to 130 degrees in 2000ms.
+
+            setTimeout(next, 2500);
         })
         .then(function(next) {
-            this.axis.claw.max(delay);
-            setTimeout(next, timeout);
-        })
-        .then(function(next) {
-            // center all axes except the claw
-            this.axis.pivot.center(delay);
-            this.axis.stand.center(delay);
-            this.axis.shoulder.center(delay);
-            this.axis.elbow.center(delay);
-            this.axis.wrist.center(delay);
-            setTimeout(next, timeout);
-        })
-        .then(function(next) {
-            var delay = 2000;
-            this.axis.pivot.to(50.00, delay);
-            this.axis.stand.to(151.50, delay);
-            this.axis.shoulder.to(58.20, delay);
-            this.axis.elbow.to(94.80, delay);
-            this.axis.wrist.to(93.02, delay);
-            setTimeout(next, timeout);
-        })
-        .then(function(next) {
-            this.axis.claw.min(delay);
-            setTimeout(next, timeout);
+            center(1000); // Move all axes to the center position.
+
+            setTimeout(next, 2500);
         });
 
     robotarm.play({

@@ -45,10 +45,6 @@ var createRobotArm = function() {
     });
 };
 
-var printRobotArmAxes = function(robotarm) {
-    console.log();
-};
-
 board.on('ready', function() {
     var that = this;
     var robotarm = createRobotArm();
@@ -75,7 +71,7 @@ board.on('ready', function() {
     var printDegrees = function() {
         var list = [];
         _.each(robotarm.axis, function(axis, name) {
-            list.push(name + '=' + axis.value);
+            list.push(name + '=' + axis.value.toFixed(2));
         });
         console.log(list.join(' '));
     };

@@ -45,6 +45,10 @@ var createRobotArm = function() {
     });
 };
 
+var printRobotArmAxes = function(robotarm) {
+    console.log();
+};
+
 board.on('ready', function() {
     var that = this;
     var robotarm = createRobotArm();
@@ -68,6 +72,14 @@ board.on('ready', function() {
         });
     };
 
+    var printDegrees = function() {
+        var list = [];
+        _.each(robotarm.axis, function(axis, name) {
+            list.push(name + '=' + axis.value);
+        });
+        console.log(list.join(' '));
+    };
+
     this.repl.inject({
         robotarm: robotarm,
         axis: robotarm.axis,
@@ -89,11 +101,11 @@ board.on('ready', function() {
             that.analogRead(pin, function(value) {
                 if (value < 250) {
                     robotarm.axis[axis].step(-1, 5); // -1 degree per step in 5ms
-                    console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
+                    printDegrees();
                 }
                 if (value > 750) {
                     robotarm.axis[axis].step(1, 5); // 1 degree per step in 5ms
-                    console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
+                    printDegrees();
                 }
             });
         });
@@ -112,7 +124,7 @@ board.on('ready', function() {
 
             if (robotarm.axis[axis].value != value) {
                 robotarm.axis[axis].to(value);
-                console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
+                printDegrees();
             }
         }, 20)); // Only invoke func at most once per every 20ms.
     })();

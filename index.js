@@ -50,4 +50,8 @@ RobotArm.prototype.reset = function() {
     return this;
 };
 
+RobotArm.prototype.isRunning = function() {
+    return this._queue.isRunning();
+};
+
 module.exports = RobotArm;

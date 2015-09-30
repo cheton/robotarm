@@ -100,29 +100,9 @@ board.on('ready', function() {
             setTimeout(next, 2500);
         });
 
-    _.each(['pivot', 'stand', 'shoulder', 'elbow', 'wrist'], function(axis, index) {
-        var pin = index;
-
-        this.analogRead(pin, _.throttle(function(value) {
-            if (value < 250) {
-                robotarm.axis[axis].step(-2); // -2 degree per step
-                console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
-            }
-            if (value > 750) {
-                robotarm.axis[axis].step(2); // 2 degree per step
-                console.log('axis=%s, value=%d', axis, robotarm.axis[axis].value);
-            }
-        }, 50)); // Only invoke func at most once per every 25ms.
-    }.bind(this));
-
-    this.analogRead(5, function(value) {
-        value = five.Fn.scale(value, 0, 1023, 135, 175);
-        robotarm.axis.claw.to(value);
+    robotarm.play({
+        loop: true // You can set loop to true to execute continuously.
     });
-
-    //robotarm.play({
-    //    loop: true // You can set loop to true to execute continuously.
-    //});
 
     /*
     setTimeout(function() {

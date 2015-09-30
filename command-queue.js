@@ -75,6 +75,10 @@ var CommandQueue = function(options) {
         return this;
     };
 
+    Wrapper.prototype.isRunning = function() {
+        return ! this._stopped;
+    };
+
     Wrapper.prototype.size = function() {
         return this._queue.length;
     };

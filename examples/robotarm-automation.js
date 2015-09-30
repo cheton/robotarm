@@ -150,10 +150,6 @@ board.on('ready', function() {
             this.axis.elbow.to(94.80, delay);
             this.axis.wrist.to(93.02, delay);
             setTimeout(next, timeout);
-        })
-        .then(function(next) {
-            this.axis.claw.min(delay);
-            setTimeout(next, timeout);
         });
 
     robotarm.play({

@@ -86,70 +86,88 @@ board.on('ready', function() {
         });
     }
 
-    var delay = 1500; // 1500ms
-    var timeout = delay + 500;
+    var motion = {
+        openClaw: {
+            claw: 'min',
+        },
+        closeClaw: {
+            claw: 'max'
+        },
+        center: {
+            pivot: 'center',
+            stand: 'center',
+            shoulder: 'center',
+            elbow: 'center',
+            wrist: 'center'
+        },
+        turnRightDown: {
+            pivot: 50.00,
+            stand: 151.50,
+            shoulder: 58.00,
+            elbow: 96.00,
+            wrist: 90.00
+        },
+        turnLeftDown: {
+            pivot: 122.00,
+            stand: 151.50,
+            shoulder: 58.00,
+            elbow: 96.00,
+            wrist: 90.00
+        }
+    };
+    var go = function(m, delay) {
+        _.each(m, function(value, axis) {
+            if ( ! _.isNumber(value)) {
+                var method = value;
+                robotarm.axis[axis][method](delay);
+                return;
+            }
+
+            robotarm.axis[axis].to(value, delay);
+        });
+    };
 
     robotarm
-        // turn right
+        // turn right down and open the claw
         .then(function(next) {
-            var delay = 2000;
-            this.axis.pivot.to(50.00, delay);
-            this.axis.stand.to(151.50, delay);
-            this.axis.shoulder.to(58.20, delay);
-            this.axis.elbow.to(94.80, delay);
-            this.axis.wrist.to(93.02, delay);
-            this.axis.claw.min(delay);
-            setTimeout(next, timeout);
+            go(motion.turnRightDown, 2000);
+            go(motion.openClaw, 2000);
+            setTimeout(next, 2500);
         })
+        // close the claw
         .then(function(next) {
-            this.axis.claw.max(delay);
-            setTimeout(next, timeout);
+            go(motion.closeClaw, 1500);
+            setTimeout(next, 2000);
         })
+        // center all except the claw
         .then(function(next) {
-            // center all axes except the claw
-            this.axis.pivot.center(delay);
-            this.axis.stand.center(delay);
-            this.axis.shoulder.center(delay);
-            this.axis.elbow.center(delay);
-            this.axis.wrist.center(delay);
-            setTimeout(next, timeout);
+            go(motion.center, 1500);
+            setTimeout(next, 2000);
         })
-        // turn left
+        // turn left down
         .then(function(next) {
-            var delay = 2000;
-            this.axis.pivot.to(122.00, delay);
-            this.axis.stand.to(151.40, delay);
-            this.axis.shoulder.to(58.00, delay);
-            this.axis.elbow.to(96.00, delay);
-            this.axis.wrist.to(90.00, delay);
-            this.axis.claw.max(delay);
-            setTimeout(next, timeout);
+            go(motion.turnLeftDown, 2000);
+            setTimeout(next, 2500);
         })
+        // open the claw
         .then(function(next) {
-            this.axis.claw.min(delay);
-            setTimeout(next, timeout);
+            go(motion.openClaw, 1500);
+            setTimeout(next, 2000);
         })
+        // close the claw
         .then(function(next) {
-            this.axis.claw.max(delay);
-            setTimeout(next, timeout);
+            go(motion.closeClaw, 1500);
+            setTimeout(next, 2000);
         })
+        // center all except the claw
         .then(function(next) {
-            // center all axes except the claw
-            this.axis.pivot.center(delay);
-            this.axis.stand.center(delay);
-            this.axis.shoulder.center(delay);
-            this.axis.elbow.center(delay);
-            this.axis.wrist.center(delay);
-            setTimeout(next, timeout);
+            go(motion.center, 1500);
+            setTimeout(next, 2000);
         })
+        // turn right down
         .then(function(next) {
-            var delay = 2000;
-            this.axis.pivot.to(50.00, delay);
-            this.axis.stand.to(151.50, delay);
-            this.axis.shoulder.to(58.20, delay);
-            this.axis.elbow.to(94.80, delay);
-            this.axis.wrist.to(93.02, delay);
-            setTimeout(next, timeout);
+            go(motion.turnRightDown, 2000);
+            setTimeout(next, 2500);
         });
 
     robotarm.play({

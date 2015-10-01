@@ -171,12 +171,7 @@ board.on('ready', function() {
         });
 
     robotarm.play({
-        loop: true // You can set loop to true to execute continuously.
+        loop: true
     });
 
-    /*
-    setTimeout(function() {
-        robotarm.stop(); // Stop robotarm after 20 seconds.
-    }, 20 * 1000);
-    */
 });

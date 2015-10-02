@@ -6,7 +6,7 @@ JavaScript Powered Robot Arm with Johnny-Five
 
 ## Demo
 #### Roadshow
-File: [examples/robotarm-show.js](examples/robotarm-show.js)<br>
+File: [examples/robotarm-show.js](examples/robotarm-roadshow.js)<br>
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/aYJ7rFvTvoU/0.jpg)](https://www.youtube.com/watch?v=aYJ7rFvTvoU "JavaScript Powered Robot Arm with Johnny-Five")
 
 #### Automation

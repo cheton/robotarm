@@ -68,7 +68,13 @@ board.on('ready', function() {
         robotarm: robotarm,
         axis: robotarm.axis,
         center: center,
-        to: to
+        to: to,
+        play: function() {
+            robotarm.play({ loop: true});
+        },
+        stop: function() {
+            robotarm.stop();
+        }
     });
 
     { // Toggle play/stop
@@ -99,13 +105,13 @@ board.on('ready', function() {
         })
         .then(function(next) {
             this.axis.pivot.to(10, 2000); // Move axis.pivot to 10 degrees in 2000ms.
-            this.axis.claw.to(175, 2000); // Move axis.claw to 175 degrees in 2000ms.
+            //this.axis.claw.to(175, 2000); // Move axis.claw to 175 degrees in 2000ms.
 
             setTimeout(next, 2500);
         })
         .then(function(next) {
             this.axis.pivot.to(150, 2000); // Move axis.pivot to 150 degrees in 2000ms.
-            this.axis.claw.to(130, 2000); // Move axis.claw to 130 degrees in 2000ms.
+            //this.axis.claw.to(130, 2000); // Move axis.claw to 130 degrees in 2000ms.
 
             setTimeout(next, 2500);
         })
@@ -115,13 +121,8 @@ board.on('ready', function() {
             setTimeout(next, 2500);
         });
 
-    robotarm.play({
-        loop: true // You can set loop to true to execute continuously.
-    });
+    //robotarm.play({
+    //    loop: true // You can set loop to true to execute continuously.
+    //});
 
-    /*
-    setTimeout(function() {
-        robotarm.stop(); // Stop robotarm after 20 seconds.
-    }, 20 * 1000);
-    */
 });

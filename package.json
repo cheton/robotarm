@@ -28,7 +28,10 @@
     "johnny-five",
     "robotarm"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "johnny-five": "^0.10.1",
+    "lodash": "^4.16.2"
+  },
   "devDependencies": {
     "gulp": "3.9.x",
     "gulp-eslint": "^1.0.0",
@@ -36,8 +39,6 @@
     "gulp-jscs-stylish": "^1.1.0",
     "gulp-jshint": "1.9.x",
     "gulp-util": "^3.0.3",
-    "johnny-five": "^0.8.91",
-    "lodash": "^3.10.1",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.2",
     "yargs": "^2.3.0"

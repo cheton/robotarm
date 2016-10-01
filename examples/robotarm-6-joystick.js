@@ -12,7 +12,7 @@ var createRobotArm = function() {
     return new RobotArm({
         axis: {
             pivot: new five.Servo({
-                pin: 3,
+                pin: 4,
                 center: true,
                 range: [10, 170]
             }),
@@ -21,25 +21,15 @@ var createRobotArm = function() {
                 center: true,
                 range: [10, 170]
             }),
-            shoulder: new five.Servo({
-                pin: 6,
-                center: true,
-                range: [10, 170]
-            }),
             elbow: new five.Servo({
-                pin: 9,
-                center: true,
-                range: [10, 170]
-            }),
-            wrist: new five.Servo({
-                pin: 10,
+                pin: 6,
                 center: true,
                 range: [0, 180]
             }),
             claw: new five.Servo({
-                pin: 11,
+                pin: 7,
                 center: true,
-                range: [135, 175]
+                range: [0, 100]
             })
         }
     });
@@ -92,16 +82,15 @@ board.on('ready', function() {
         center(1000);
     });
 
-    // Servo: pivot, stand, shoulder, elbow, wrist
     (function() {
-        // A0=pivot, A1=stand, A2=shoulder, A3=elbow, A4=wrist
+        // A0=pivot, A1=stand, A3=elbow
         var axes = _(robotarm.axis)
             .keys()
             .without('claw')
             .value();
-        var pins = [0, 1, 2, 3, 4];
+        var pins = [0, 1, 3];
 
-        _.each(axes, function(axis, index) {
+    _.each(['pivot', 'stand', 'elbow'], function(axis, index) {
             var pin = pins[index];
 
             that.analogRead(pin, function(value) {
@@ -123,7 +112,7 @@ board.on('ready', function() {
         var axis = 'claw';
         var pin = 5;
 
-        that.analogRead(5, _.throttle(function(value) {
+        that.analogRead(pin, _.throttle(function(value) {
             var min = robotarm.axis[axis].range[0];
             var max = robotarm.axis[axis].range[1];
 
